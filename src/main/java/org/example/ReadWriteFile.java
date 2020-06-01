@@ -4,7 +4,7 @@ import org.example.enums.*;
 
 import java.io.*;
 
-public class ReadCarsFromFile {
+public class ReadWriteFile {
 
     private String[] id = new String[10];
     private Company[] company = new Company[10];
@@ -44,7 +44,7 @@ public class ReadCarsFromFile {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
         int i = 0;
-        while((line = bufferedReader.readLine())  != null) {
+        while ((line = bufferedReader.readLine()) != null) {
             String[] split = line.split(",");
             id[i] = split[0];
             company[i] = Company.valueOf(split[1]);
@@ -56,4 +56,17 @@ public class ReadCarsFromFile {
         }
         bufferedReader.close();
     }
+
+    public void writeCarList(String text) throws IOException {
+        String path = "src/main/java/org/example/newlist.txt";
+        FileWriter fileWriter = new FileWriter(path, true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(text);
+        bufferedWriter.close();
+    }
+
+
+
+
+
 }
