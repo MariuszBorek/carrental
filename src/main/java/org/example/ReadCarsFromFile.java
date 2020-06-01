@@ -4,7 +4,7 @@ import org.example.enums.*;
 
 import java.io.*;
 
-public class ReadFile {
+public class ReadCarsFromFile {
 
     private String[] id = new String[10];
     private Company[] company = new Company[10];
@@ -56,16 +56,4 @@ public class ReadFile {
         }
         bufferedReader.close();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
