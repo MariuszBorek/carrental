@@ -58,15 +58,10 @@ public class ReadWriteFile {
     }
 
     public void writeCarList(String text) throws IOException {
-        String path = "src/main/java/org/example/newlist.txt";
+        String path = "src/main/java/org/example/listofcreatedcars.txt";
         FileWriter fileWriter = new FileWriter(path, true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(text);
         bufferedWriter.close();
     }
-
-
-
-
-
 }
