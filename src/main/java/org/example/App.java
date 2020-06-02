@@ -35,33 +35,33 @@ public class App {
 
             System.out.println("____________________________________MENU_____________________________________\n" +
                     "|\t\t\ta - add car | c - change availability | l - car list\t\t\t|\n" +
-                    "| g - get car back | s - save cars to file | w - write a car list form file |\n" +
+                    "| g - get car back | s - save cars to file | r - read a car list form file  |\n" +
                     "|___________________________________________________________________________|\n" +
                     "input your choice:");
-
             action = in.nextLine();
 
-            switch(action) {
+            switch (action) {
                 case "a": {
                     System.out.println("add car nr: " + j + " to car list:");
                     System.out.println("input car registration:");
-                    String id = in.nextLine();
+                    String id = in.nextLine().toUpperCase();
                     System.out.println("input car company | MERCEDES | BMW | AUDI | MAZDA | LEXUS |");
-                    Company company = Company.valueOf(in.nextLine());
+                    Company company = Company.valueOf(in.nextLine().toUpperCase());
                     System.out.println("input car color | RED | YELLOW | ORANGE | BLUE | PURPLE | GRAY | SILVER | WHITE | BLACK |");
-                    Color color = Color.valueOf(in.nextLine());
+                    Color color = Color.valueOf(in.nextLine().toUpperCase());
                     System.out.println("input car type | SMALL | MEDIUM | LARGE | PREMIUM | SUV | VAN |");
-                    Size size = Size.valueOf(in.nextLine());
+                    Size size = Size.valueOf(in.nextLine().toUpperCase());
                     System.out.println("input car gear Type | AUTOMATIC | MANUAL |");
-                    GearType gearType = GearType.valueOf(in.nextLine());
+                    GearType gearType = GearType.valueOf(in.nextLine().toUpperCase());
                     System.out.println("input car availability | AVAILABLE | UNAVAILABLE |");
-                    Availability availability = Availability.valueOf(in.nextLine());
+                    Availability availability = Availability.valueOf(in.nextLine().toUpperCase());
                     car[j] = new Car(id, company, color, size, gearType, availability);
                     j++;
                     controller(in, carList, car, j);
                     return;
                 }
                 case "c": {
+                    // function, in progress
                     System.out.println("change car availability, input number(index) of car");
 
                     System.out.println("the car has been rented");
@@ -77,12 +77,13 @@ public class App {
                     return;
                 }
                 case "g": {
+                    // function, in progress
                     System.out.println("get car back");
                     controller(in, carList, car, j);
                     return;
                 }
                 case "s": {
-                    System.out.println("car was added to file: \"listofcreatedcars.txt\"");
+                    System.out.println("cars was added to file: \"listofcreatedcars.txt\"");
                     for (int i = 0; i < j; i++) {
                         try {
                             carList.writeCarList(car[i].toString() + "\n");
@@ -93,13 +94,15 @@ public class App {
                     controller(in, carList, car, j);
                     return;
                 }
-                case "w": {
-                    System.out.println("write a car list form file");
+                case "r": {
+                    // function, in progress
+                    System.out.println("read a car list form file");
                     try {
-                        carList.ReadCarList();
+                        carList.ReadCarList(j, car); // you put actual "j" counter and actual array to method
                     } catch (IOException e) {
                         System.out.println("problem with file");
                     }
+                    j = j + carList.getNumberOfAddedCars(); // you got actual "j" index from ReadWriteFileClass
                     controller(in, carList, car, j);
                     return;
                 }

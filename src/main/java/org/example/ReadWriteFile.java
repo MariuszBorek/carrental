@@ -6,12 +6,14 @@ import java.io.*;
 
 public class ReadWriteFile {
 
-    private String[] id = new String[10];
-    private Company[] company = new Company[10];
-    private Color[] color = new Color[10];
-    private Size[] size = new Size[10];
-    private GearType[] gearType = new GearType[10];
-    private Availability[] availability = new Availability[10];
+    private String[] id = new String[100];
+    private Company[] company = new Company[100];
+    private Color[] color = new Color[100];
+    private Size[] size = new Size[100];
+    private GearType[] gearType = new GearType[100];
+    private Availability[] availability = new Availability[100];
+    private int numberOfAddedCars;
+
 
     public String getId(int i) {
         return id[i];
@@ -37,7 +39,7 @@ public class ReadWriteFile {
         return availability[i];
     }
 
-    public void ReadCarList() throws IOException {
+    public void ReadCarList(int j, Car[] car) throws IOException { // here you have array from App class
         String path = "src/main/java/org/example/carlist.txt";
         File file = new File(path);
         FileReader fileReader = new FileReader(file);
@@ -55,6 +57,10 @@ public class ReadWriteFile {
             i++;
         }
         bufferedReader.close();
+
+        // create a an array with cars form file and add this array to array in App Class
+        this.numberOfAddedCars = j + i; // actual index in app
+
     }
 
     public void writeCarList(String text) throws IOException {
@@ -63,5 +69,9 @@ public class ReadWriteFile {
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(text);
         bufferedWriter.close();
+    }
+
+    public int getNumberOfAddedCars() {
+        return numberOfAddedCars;
     }
 }
