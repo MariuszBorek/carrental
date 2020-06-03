@@ -2,8 +2,6 @@ package org.example;
 
 import org.example.enums.*;
 
-import java.security.PublicKey;
-
 public class Car {
 
     private String id;
@@ -20,6 +18,10 @@ public class Car {
         this.color = color;
         this.size = size;
         this.gearType = gearType;
+        this.availability = availability;
+    }
+
+    public void setAvailability(Availability availability) {
         this.availability = availability;
     }
 

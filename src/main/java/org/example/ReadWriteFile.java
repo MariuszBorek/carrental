@@ -14,6 +14,7 @@ public class ReadWriteFile {
     private Availability[] availability = new Availability[100];
     private int numberOfAddedCars;
 
+    Car[] carWrote = new Car[100];
 
     public String getId(int i) {
         return id[i];
@@ -39,7 +40,7 @@ public class ReadWriteFile {
         return availability[i];
     }
 
-    public void ReadCarList(int j, Car[] car) throws IOException { // here you have array from App class
+    public void ReadCarList() throws IOException { // here you have array from App class
         String path = "src/main/java/org/example/carlist.txt";
         File file = new File(path);
         FileReader fileReader = new FileReader(file);
@@ -54,13 +55,11 @@ public class ReadWriteFile {
             size[i] = Size.valueOf(split[3]);
             gearType[i] = GearType.valueOf(split[4]);
             availability[i] = Availability.valueOf(split[5]);
+            carWrote[i] = new Car(id[i], company[i], color[i], size[i], gearType[i], availability[i]);
             i++;
         }
+        this.numberOfAddedCars = i;
         bufferedReader.close();
-
-        // create a an array with cars form file and add this array to array in App Class
-        this.numberOfAddedCars = j + i; // actual index in app
-
     }
 
     public void writeCarList(String text) throws IOException {
@@ -73,5 +72,9 @@ public class ReadWriteFile {
 
     public int getNumberOfAddedCars() {
         return numberOfAddedCars;
+    }
+
+    public Car getCarWrote(int i) {
+        return carWrote[i];
     }
 }
